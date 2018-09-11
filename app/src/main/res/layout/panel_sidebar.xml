@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="?android:actionBarSize"
+        android:text="@string/me"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:gravity="center_vertical"
+        android:background="@drawable/divider_bottom_background"
+        android:paddingStart="@dimen/padding_normal"
+        android:paddingEnd="@dimen/padding_normal"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/sidebar_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        tools:listitem="@layout/list_item_sidebar"/>
+
+</LinearLayout>

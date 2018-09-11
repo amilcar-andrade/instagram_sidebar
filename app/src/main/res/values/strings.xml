@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">InstagramSidebar</string>
+    <string name="me">amilcar.andrade.g</string>
+
+    <!-- Side bar -->
+    <string name="saved">Saved</string>
+    <string name="discover_people">Discover People</string>
+    <string name="open_facebook">Open Facebook</string>
+
 </resources>

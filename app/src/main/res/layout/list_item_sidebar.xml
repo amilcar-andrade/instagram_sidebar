@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="?listPreferredItemHeightSmall"
+    android:gravity="center_vertical"
+    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+    android:textColor="@color/text_primary_dark"
+    android:drawablePadding="@dimen/spacing_normal"
+    android:paddingStart="@dimen/padding_normal"
+    android:paddingEnd="@dimen/padding_normal"
+    tools:drawableStart="@drawable/ic_bookmark_border_black_24dp"
+    tools:text="Saved"/>
