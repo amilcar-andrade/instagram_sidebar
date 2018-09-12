@@ -1,10 +1,14 @@
 <resources>
     <string name="app_name">InstagramSidebar</string>
     <string name="me">amilcar.andrade.g</string>
+    <string name="me_full">Amilcar Andrade</string>
 
     <!-- Side bar -->
     <string name="saved">Saved</string>
     <string name="discover_people">Discover People</string>
     <string name="open_facebook">Open Facebook</string>
+
+    <string name="hamburger">Hamburger</string>
+    <string name="story">Story</string>
 
 </resources>
