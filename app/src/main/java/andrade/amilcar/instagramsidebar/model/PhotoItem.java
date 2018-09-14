@@ -4,12 +4,14 @@ import android.support.annotation.NonNull;
 
 public class PhotoItem implements GridItem {
 
-    private int id;
+    private final int id;
 
-    private String author;
+    PhotoItem(int id) {
+        this.id = id;
+    }
 
     @NonNull
     public String getUrl() {
-        return "https://picsum.photos/400/400?image=" + id;
+        return "https://picsum.photos/300/300?image=" + id;
     }
 }

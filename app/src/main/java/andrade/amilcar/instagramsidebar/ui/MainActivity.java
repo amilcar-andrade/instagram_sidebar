@@ -5,21 +5,26 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.List;
 
 import andrade.amilcar.instagramsidebar.R;
-import andrade.amilcar.instagramsidebar.model.PhotoItem;
-import andrade.amilcar.instagramsidebar.service.PhotoService;
+import andrade.amilcar.instagramsidebar.model.GridItem;
+import andrade.amilcar.instagramsidebar.service.ProfileService;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
 
+    private Disposable disposable;
     private SlidingPaneLayout panel;
     private RecyclerView grid;
 
@@ -31,20 +36,32 @@ public class MainActivity extends AppCompatActivity {
         panel = findViewById(R.id.panel);
         panel.setSliderFadeColor(Color.TRANSPARENT);
         grid = findViewById(R.id.grid);
-        grid.addItemDecoration(new GridMarginDecoration(getResources().getDimensionPixelSize(R.dimen.grid_item_spacing)));
 
+        setupRecyclerView();
         setSupportActionBar(toolbar);
         final RecyclerView sidebarList = findViewById(R.id.sidebar_list);
         sidebarList.setAdapter(new SidebarAdapter());
 
-        PhotoService.getInstance().getPhotosAsync()
+        disposable = ProfileService.getInstance()
+                .getGridInfoAsync()
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<PhotoItem>>() {
-            @Override
-            public void accept(List<PhotoItem> photoItems) throws Exception {
-                grid.setAdapter(new GridAdapter(photoItems));
-            }
-        });
+                .subscribe(new Consumer<List<GridItem>>() {
+                    @Override
+                    public void accept(List<GridItem> photoItems) throws Exception {
+                        grid.setAdapter(new GridAdapter(photoItems));
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        Log.e(TAG, throwable.getMessage());
+                    }
+                });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        disposable.dispose();
     }
 
     @Override
@@ -65,5 +82,17 @@ public class MainActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setupRecyclerView() {
+        GridLayoutManager gridLayoutManager = (GridLayoutManager) grid.getLayoutManager();
+        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                return position == 0 ? 3 : 1;
+            }
+        });
+        grid.addItemDecoration(new GridMarginDecoration(getResources().getDimensionPixelSize(R.dimen.grid_item_spacing)));
+        grid.setHasFixedSize(true);
     }
 }

@@ -16,11 +16,11 @@ import andrade.amilcar.instagramsidebar.model.GridItem;
 import andrade.amilcar.instagramsidebar.model.HeaderItem;
 import andrade.amilcar.instagramsidebar.model.PhotoItem;
 
-public class GridAdapter<T extends GridItem> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class GridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private final List<T> items;
+    private final List<GridItem> items;
 
-    GridAdapter(@NonNull List<T> items) {
+    GridAdapter(@NonNull List<GridItem> items) {
         this.items = items;
     }
 

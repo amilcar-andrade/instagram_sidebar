@@ -9,6 +9,7 @@ import retrofit2.http.GET;
 
 interface PhotoApi {
 
+    // LATER: Change it to be a Single
     @GET("/list")
     Single<Response<List<PhotoItem>>> getPhotos();
 }
