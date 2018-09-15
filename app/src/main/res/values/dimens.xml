@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <dimen name="spacing_xsmall">4dp</dimen>
     <dimen name="spacing_small">8dp</dimen>
     <dimen name="spacing_large">24dp</dimen>
     <dimen name="spacing_normal">16dp</dimen>
@@ -8,6 +9,9 @@
     <dimen name="side_bar_width">280dp</dimen>
     <dimen name="image_height">150dp</dimen>
     <dimen name="grid_item_spacing">2dp</dimen>
-    <dimen name="profile_size">80dp</dimen>
+    <dimen name="profile_size">85dp</dimen>
 
+    <dimen name="profile_header_min_height">160dp</dimen>
+    <dimen name="min_icon_size">32dp</dimen>
+    <dimen name="button_corner_radio">4dp</dimen>
 </resources>

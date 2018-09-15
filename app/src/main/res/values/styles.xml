@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="TextAppearance.Instagram" parent="TextAppearance.AppCompat.Subhead">
+        <item name="android:textStyle">bold</item>
+
+    </style>
+
 </resources>

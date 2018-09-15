@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="150dp">
+    android:minHeight="@dimen/profile_header_min_height">
 
     <android.support.constraint.Guideline
         android:id="@+id/vertical_guideline"
@@ -32,39 +32,43 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image"
-        android:layout_marginTop="@dimen/spacing_small"
-        android:layout_marginStart="@dimen/spacing_normal"
-        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-        android:textStyle="bold"
+        android:layout_margin="@dimen/spacing_normal"
+        android:textAppearance="@style/TextAppearance.Instagram"
         tools:text="Amilcar Andrade"/>
 
-    <Button
+    <TextView
         android:id="@+id/edit_button"
         android:layout_width="0dp"
-        android:layout_height="36dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintLeft_toRightOf="@id/vertical_guideline"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/image"
-        android:layout_marginEnd="@dimen/spacing_normal"/>
+        android:layout_marginEnd="@dimen/spacing_normal"
+        android:gravity="center"
+        android:padding="@dimen/spacing_xsmall"
+        android:background="@drawable/button_outline_bg"
+        android:text="@string/edit_profile"/>
 
     <TextView
         android:id="@+id/posts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/posts_title"
         app:layout_constraintLeft_toRightOf="@id/vertical_guideline"
         app:layout_constraintRight_toLeftOf="@id/followers"
         app:layout_constraintHorizontal_chainStyle="spread"
-        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.Instagram"
         tools:text="27"/>
 
     <TextView
+        android:id="@+id/posts_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/posts"
         app:layout_constraintBottom_toTopOf="@id/edit_button"
         app:layout_constraintLeft_toRightOf="@id/vertical_guideline"
         app:layout_constraintRight_toLeftOf="@id/followers"
+        android:layout_marginBottom="@dimen/spacing_normal"
         android:text="@string/posts" />
 
     <TextView
@@ -73,17 +77,18 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toRightOf="@id/posts"
         app:layout_constraintRight_toLeftOf="@id/following"
-        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/followers_title"
+        android:textAppearance="@style/TextAppearance.Instagram"
         tools:text="106"/>
 
     <TextView
+        android:id="@+id/followers_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/edit_button"
         app:layout_constraintLeft_toRightOf="@id/posts"
         app:layout_constraintRight_toLeftOf="@id/following"
-        app:layout_constraintTop_toBottomOf="@id/followers"
+        android:layout_marginBottom="@dimen/spacing_normal"
         android:text="@string/followers"/>
 
     <TextView
@@ -92,17 +97,62 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toRightOf="@id/followers"
         app:layout_constraintRight_toRightOf="parent"
-        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/following_title"
+        android:textAppearance="@style/TextAppearance.Instagram"
         tools:text="106"/>
 
     <TextView
+        android:id="@+id/following_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/edit_button"
         app:layout_constraintLeft_toRightOf="@id/followers"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/following"
+        android:layout_marginBottom="@dimen/spacing_normal"
         android:text="@string/following" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:background="@color/grey_300"/>
+
+    <ImageView
+        android:id="@+id/view_comfy_icon"
+        android:layout_width="@dimen/min_icon_size"
+        android:layout_height="@dimen/min_icon_size"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:layout_marginBottom="@dimen/spacing_small"
+        app:layout_constraintTop_toBottomOf="@id/divider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/view_stream_icon"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:src="@drawable/ic_view_comfy_black_24dp"
+        android:contentDescription="@null" />
+
+    <ImageView
+        android:id="@+id/view_stream_icon"
+        android:layout_width="@dimen/min_icon_size"
+        android:layout_height="@dimen/min_icon_size"
+        app:layout_constraintTop_toTopOf="@id/view_comfy_icon"
+        app:layout_constraintLeft_toRightOf="@id/view_comfy_icon"
+        app:layout_constraintRight_toLeftOf="@id/account_box_icon"
+        android:src="@drawable/ic_view_stream_black_24dp"
+        android:contentDescription="@null" />
+
+    <ImageView
+        android:id="@+id/account_box_icon"
+        android:layout_width="@dimen/min_icon_size"
+        android:layout_height="@dimen/min_icon_size"
+        app:layout_constraintTop_toTopOf="@id/view_comfy_icon"
+        app:layout_constraintLeft_toRightOf="@id/view_stream_icon"
+        app:layout_constraintRight_toRightOf="parent"
+        android:src="@drawable/ic_account_box_black_24dp"
+        android:contentDescription="@null" />
 
 </android.support.constraint.ConstraintLayout>
