@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -73,12 +72,6 @@ public class GridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         void bind(final @NonNull PhotoItem item) {
             Picasso.get().load(item.getUrl()).into(imageView);
-            imageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(v.getContext(), String.valueOf(item.id), Toast.LENGTH_SHORT).show();
-                }
-            });
         }
     }
 
