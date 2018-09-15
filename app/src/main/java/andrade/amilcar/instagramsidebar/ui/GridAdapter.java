@@ -1,12 +1,19 @@
 package andrade.amilcar.instagramsidebar.ui;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.annotation.NonNull;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -64,19 +71,56 @@ public class GridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             this.imageView = (ImageView) itemView;
         }
 
-        void bind(@NonNull PhotoItem item) {
+        void bind(final @NonNull PhotoItem item) {
             Picasso.get().load(item.getUrl()).into(imageView);
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(v.getContext(), String.valueOf(item.id), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 
     static class HeaderHolder extends RecyclerView.ViewHolder {
+        private TextView name;
+        private TextView followers;
+        private TextView posts;
+        private TextView following;
+        private ImageView imageView;
 
         HeaderHolder(View itemView) {
             super(itemView);
+            name = itemView.findViewById(R.id.name);
+            followers = itemView.findViewById(R.id.followers);
+            following = itemView.findViewById(R.id.following);
+            posts = itemView.findViewById(R.id.posts);
+            imageView = itemView.findViewById(R.id.image);
         }
 
-        void bind(@NonNull HeaderItem item) {
+        void bind(@NonNull final HeaderItem item) {
+            // https://stackoverflow.com/a/37756752/1768722
+            Picasso.get()
+                    .load(item.getPhoto().getUrl())
+                    .into(imageView, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            Bitmap imageBitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+                            RoundedBitmapDrawable imageDrawable = RoundedBitmapDrawableFactory.create(imageView.getResources(), imageBitmap);
+                            imageDrawable.setCircular(true);
+                            imageDrawable.setCornerRadius(Math.max(imageBitmap.getWidth(), imageBitmap.getHeight()) / 2.0f);
+                            imageView.setImageDrawable(imageDrawable);
+                        }
 
+                        @Override
+                        public void onError(Exception e) {
+                            // no-op
+                        }
+                    });
+            name.setText(item.getName());
+            followers.setText(item.getFollowers());
+            posts.setText(item.getPosts());
+            following.setText(item.getFollowing());
         }
     }
 }

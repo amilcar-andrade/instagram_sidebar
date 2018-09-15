@@ -15,8 +15,8 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:gravity="center_vertical"
         android:background="@drawable/divider_bottom_background"
-        android:paddingStart="@dimen/padding_normal"
-        android:paddingEnd="@dimen/padding_normal"/>
+        android:paddingStart="@dimen/spacing_normal"
+        android:paddingEnd="@dimen/spacing_normal"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/sidebar_list"

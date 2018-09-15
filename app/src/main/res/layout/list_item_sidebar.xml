@@ -7,8 +7,8 @@
     android:gravity="center_vertical"
     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
     android:textColor="@color/text_primary_dark"
-    android:drawablePadding="@dimen/spacing_normal"
-    android:paddingStart="@dimen/padding_normal"
-    android:paddingEnd="@dimen/padding_normal"
+    android:drawablePadding="@dimen/spacing_small"
+    android:paddingStart="@dimen/spacing_normal"
+    android:paddingEnd="@dimen/spacing_normal"
     tools:drawableStart="@drawable/ic_bookmark_border_black_24dp"
     tools:text="Saved"/>

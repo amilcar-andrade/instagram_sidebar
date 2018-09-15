@@ -1,5 +1,7 @@
 package andrade.amilcar.instagramsidebar.model;
 
+import android.support.annotation.NonNull;
+
 public class HeaderItem implements GridItem {
 
     private final PhotoItem photo;
@@ -8,9 +10,9 @@ public class HeaderItem implements GridItem {
     private final int followers;
     private final int following;
 
-    public HeaderItem(String name, PhotoItem photo, int posts, int followers, int following) {
+    public HeaderItem(@NonNull String name, int posts, int followers, int following) {
         this.name = name;
-        this.photo = photo;
+        this.photo = new PhotoItem(338);
         this.posts = posts;
         this.followers = followers;
         this.following = following;
@@ -24,15 +26,15 @@ public class HeaderItem implements GridItem {
         return name;
     }
 
-    public int getPosts() {
-        return posts;
+    public String getPosts() {
+        return String.valueOf(posts);
     }
 
-    public int getFollowers() {
-        return followers;
+    public String getFollowers() {
+        return String.valueOf(followers);
     }
 
-    public int getFollowing() {
-        return following;
+    public String getFollowing() {
+        return String.valueOf(following);
     }
 }

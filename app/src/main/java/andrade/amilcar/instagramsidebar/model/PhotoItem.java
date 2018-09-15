@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 public class PhotoItem implements GridItem {
 
-    private final int id;
+    public final int id;
 
     PhotoItem(int id) {
         this.id = id;

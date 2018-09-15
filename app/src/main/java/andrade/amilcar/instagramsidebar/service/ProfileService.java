@@ -53,7 +53,7 @@ public class ProfileService {
             public List<GridItem> apply(HeaderItem header, List<PhotoItem> photos) throws Exception {
                 List<GridItem> items = new ArrayList<>();
                 items.add(header);
-                items.addAll(photos.subList(9, 27));
+                items.addAll(photos.subList(10, 28));
                 cache = items;
                 return items;
             }
@@ -61,8 +61,7 @@ public class ProfileService {
     }
 
     private Single<HeaderItem> getHeaderItem() {
-        HeaderItem item = new HeaderItem(null, null, 0, 0, 0);
-        return Single.just(item);
+        return Single.just(new HeaderItem("Amilcar Andrade", 27, 106, 173));
     }
 
     private Single<List<PhotoItem>> getPhotos() {

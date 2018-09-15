@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="?android:actionBarSize"
             app:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:title="@string/me"/>
+            app:title="@string/me" />
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v7.widget.RecyclerView
@@ -27,6 +27,6 @@
         android:layout_height="match_parent"
         app:layoutManager="android.support.v7.widget.GridLayoutManager"
         app:spanCount="3"
-        tools:listitem="@layout/list_item_sidebar"/>
+        tools:listitem="@layout/list_item_photo"/>
 
 </LinearLayout>
