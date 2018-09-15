@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         final Toolbar toolbar = findViewById(R.id.toolbar);
         panel = findViewById(R.id.panel);
         panel.setSliderFadeColor(Color.TRANSPARENT);
+        panel.setParallaxDistance(getResources().getDimensionPixelSize(R.dimen.side_bar_width));
         grid = findViewById(R.id.grid);
 
         setupRecyclerView();
