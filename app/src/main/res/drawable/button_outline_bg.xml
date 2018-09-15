@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-
     <item android:state_enabled="true">
         <shape android:shape="rectangle">
             <stroke
@@ -14,7 +13,6 @@
                 android:topRightRadius="@dimen/button_corner_radio" />
         </shape>
     </item>
-
     <item android:state_enabled="false">
         <shape android:shape="rectangle">
             <stroke
@@ -28,6 +26,5 @@
                 android:topRightRadius="@dimen/button_corner_radio" />
         </shape>
     </item>
-
 </selector>
 

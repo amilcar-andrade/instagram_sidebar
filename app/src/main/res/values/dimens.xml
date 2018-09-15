@@ -14,4 +14,5 @@
     <dimen name="profile_header_min_height">160dp</dimen>
     <dimen name="min_icon_size">32dp</dimen>
     <dimen name="button_corner_radio">4dp</dimen>
+
 </resources>
