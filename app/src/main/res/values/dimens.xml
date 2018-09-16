@@ -15,4 +15,6 @@
     <dimen name="min_icon_size">32dp</dimen>
     <dimen name="button_corner_radio">4dp</dimen>
 
+    <item name="profile_guideline_percent" format="float" type="dimen">0.3</item>
+
 </resources>

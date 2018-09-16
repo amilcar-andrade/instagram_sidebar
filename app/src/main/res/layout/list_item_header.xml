@@ -12,15 +12,15 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.30"/>
+        app:layout_constraintGuide_percent="@dimen/profile_guideline_percent"/>
 
     <ImageView
         android:id="@+id/image"
         android:layout_width="@dimen/profile_size"
         android:layout_height="@dimen/profile_size"
         android:background="@drawable/profile_background"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/vertical_guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/vertical_guideline"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="@dimen/spacing_large"
         android:contentDescription="@null"/>
@@ -29,11 +29,12 @@
         android:id="@+id/name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image"
         android:layout_margin="@dimen/spacing_normal"
         android:textAppearance="@style/TextAppearance.Instagram"
+        android:textAlignment="viewStart"
         tools:text="Amilcar Andrade"/>
 
     <TextView
@@ -41,8 +42,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintLeft_toRightOf="@id/vertical_guideline"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@id/vertical_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/image"
         android:layout_marginEnd="@dimen/spacing_normal"
         android:gravity="center"
@@ -55,8 +56,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/posts_title"
-        app:layout_constraintLeft_toRightOf="@id/vertical_guideline"
-        app:layout_constraintRight_toLeftOf="@id/followers"
+        app:layout_constraintStart_toEndOf="@id/vertical_guideline"
+        app:layout_constraintEnd_toStartOf="@id/followers"
         app:layout_constraintHorizontal_chainStyle="spread"
         android:textAppearance="@style/TextAppearance.Instagram"
         tools:text="27"/>
@@ -66,8 +67,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/edit_button"
-        app:layout_constraintLeft_toRightOf="@id/vertical_guideline"
-        app:layout_constraintRight_toLeftOf="@id/followers"
+        app:layout_constraintStart_toEndOf="@id/vertical_guideline"
+        app:layout_constraintEnd_toStartOf="@id/followers"
         android:layout_marginBottom="@dimen/spacing_normal"
         android:text="@string/posts" />
 
@@ -75,8 +76,8 @@
         android:id="@+id/followers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toRightOf="@id/posts"
-        app:layout_constraintRight_toLeftOf="@id/following"
+        app:layout_constraintStart_toEndOf="@id/posts"
+        app:layout_constraintEnd_toStartOf="@id/following"
         app:layout_constraintBottom_toTopOf="@id/followers_title"
         android:textAppearance="@style/TextAppearance.Instagram"
         tools:text="106"/>
@@ -86,8 +87,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/edit_button"
-        app:layout_constraintLeft_toRightOf="@id/posts"
-        app:layout_constraintRight_toLeftOf="@id/following"
+        app:layout_constraintStart_toEndOf="@id/posts"
+        app:layout_constraintEnd_toStartOf="@id/following"
         android:layout_marginBottom="@dimen/spacing_normal"
         android:text="@string/followers"/>
 
@@ -95,8 +96,8 @@
         android:id="@+id/following"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toRightOf="@id/followers"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@id/followers"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/following_title"
         android:textAppearance="@style/TextAppearance.Instagram"
         tools:text="106"/>
@@ -106,8 +107,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/edit_button"
-        app:layout_constraintLeft_toRightOf="@id/followers"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@id/followers"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="@dimen/spacing_normal"
         android:text="@string/following" />
 
@@ -115,9 +116,9 @@
         android:id="@+id/divider"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/name"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="@dimen/spacing_normal"
         android:background="@color/grey_300"/>
 
@@ -129,8 +130,8 @@
         android:layout_marginBottom="@dimen/spacing_small"
         app:layout_constraintTop_toBottomOf="@id/divider"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/view_stream_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/view_stream_icon"
         app:layout_constraintHorizontal_chainStyle="spread"
         android:src="@drawable/ic_view_comfy_black_24dp"
         android:contentDescription="@null" />
@@ -140,8 +141,8 @@
         android:layout_width="@dimen/min_icon_size"
         android:layout_height="@dimen/min_icon_size"
         app:layout_constraintTop_toTopOf="@id/view_comfy_icon"
-        app:layout_constraintLeft_toRightOf="@id/view_comfy_icon"
-        app:layout_constraintRight_toLeftOf="@id/account_box_icon"
+        app:layout_constraintStart_toEndOf="@id/view_comfy_icon"
+        app:layout_constraintEnd_toStartOf="@id/account_box_icon"
         android:src="@drawable/ic_view_stream_black_24dp"
         android:contentDescription="@null" />
 
@@ -150,8 +151,8 @@
         android:layout_width="@dimen/min_icon_size"
         android:layout_height="@dimen/min_icon_size"
         app:layout_constraintTop_toTopOf="@id/view_comfy_icon"
-        app:layout_constraintLeft_toRightOf="@id/view_stream_icon"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@id/view_stream_icon"
+        app:layout_constraintEnd_toEndOf="parent"
         android:src="@drawable/ic_account_box_black_24dp"
         android:contentDescription="@null" />
 
