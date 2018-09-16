@@ -39,7 +39,8 @@ class SidebarAdapter extends RecyclerView.Adapter<SidebarAdapter.SidebarViewHold
 
         void bind(SidebarItem i) {
             item.setText(i.getStringId());
-            item.setCompoundDrawablesWithIntrinsicBounds(i.getDrawableId(), 0, 0, 0);
+            // See: https://android-developers.googleblog.com/2013/03/native-rtl-support-in-android-42.html
+            item.setCompoundDrawablesRelativeWithIntrinsicBounds(i.getDrawableId(), 0, 0, 0);
         }
     }
 }

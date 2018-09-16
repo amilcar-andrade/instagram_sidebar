@@ -12,7 +12,8 @@
         android:layout_height="?android:actionBarSize"
         android:text="@string/me"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:gravity="center_vertical"
+        android:gravity="start|center_vertical"
+        android:textAlignment="viewStart"
         android:background="@drawable/divider_bottom_background"
         android:paddingStart="@dimen/spacing_normal"
         android:paddingEnd="@dimen/spacing_normal"/>
