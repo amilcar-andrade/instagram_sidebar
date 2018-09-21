@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<andrade.amilcar.instagramsidebar.ui.RightySlidingPaneLayout
+<andrade.amilcar.instagramsidebar.ui.RightyPaneLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/panel"
     android:layout_width="match_parent"
@@ -15,4 +15,4 @@
         android:layout_height="match_parent"
         layout="@layout/panel_profile"/>
 
-</andrade.amilcar.instagramsidebar.ui.RightySlidingPaneLayout>
+</andrade.amilcar.instagramsidebar.ui.RightyPaneLayout>
