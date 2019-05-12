@@ -71,7 +71,7 @@ public class GridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
         void bind(final @NonNull PhotoItem item) {
-            Picasso.get().load(item.getUrl()).into(imageView);
+            Picasso.get().load(item.url()).into(imageView);
         }
     }
 
@@ -94,7 +94,7 @@ public class GridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         void bind(@NonNull final HeaderItem item) {
             // https://stackoverflow.com/a/37756752/1768722
             Picasso.get()
-                    .load(item.getPhoto().getUrl())
+                    .load(item.photo().url())
                     .into(imageView, new Callback() {
                         @Override
                         public void onSuccess() {
@@ -110,10 +110,10 @@ public class GridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                             // no-op
                         }
                     });
-            name.setText(item.getName());
-            followers.setText(item.getFollowers());
-            posts.setText(item.getPosts());
-            following.setText(item.getFollowing());
+            name.setText(item.name());
+            followers.setText(String.valueOf(item.followers()));
+            posts.setText(String.valueOf(item.posts()));
+            following.setText(String.valueOf(item.followers()));
         }
     }
 }

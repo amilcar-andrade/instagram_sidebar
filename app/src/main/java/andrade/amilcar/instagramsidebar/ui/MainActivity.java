@@ -42,14 +42,20 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         final RecyclerView sidebarList = findViewById(R.id.sidebar_list);
         sidebarList.setAdapter(new SidebarAdapter());
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
         disposable = ProfileService.getInstance()
                 .getGridInfoAsync()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<GridItem>>() {
                     @Override
                     public void accept(List<GridItem> photoItems) throws Exception {
-                        grid.setAdapter(new GridAdapter(photoItems));
+                        if (grid.getAdapter() == null) {
+                            grid.setAdapter(new GridAdapter(photoItems));
+                        }
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -60,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onPause() {
+        super.onPause();
         disposable.dispose();
     }
 

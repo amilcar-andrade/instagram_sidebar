@@ -2,10 +2,14 @@ package andrade.amilcar.instagramsidebar.service;
 
 import android.support.annotation.NonNull;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import andrade.amilcar.instagramsidebar.gson.AutoValueAdapterFactory;
 import andrade.amilcar.instagramsidebar.model.GridItem;
 import andrade.amilcar.instagramsidebar.model.HeaderItem;
 import andrade.amilcar.instagramsidebar.model.PhotoItem;
@@ -18,7 +22,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ProfileService {
+public final class ProfileService {
 
     private final PhotoApi api;
     private List<GridItem> cache = new ArrayList<>();
@@ -28,10 +32,14 @@ public class ProfileService {
     }
 
     private ProfileService() {
+        final Gson gson = new GsonBuilder()
+                .registerTypeAdapterFactory(new AutoValueAdapterFactory())
+                .create();
+
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://picsum.photos/")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
         api = retrofit.create(PhotoApi.class);
@@ -61,7 +69,7 @@ public class ProfileService {
     }
 
     private Single<HeaderItem> getHeaderItem() {
-        return Single.just(new HeaderItem("Amilcar Andrade", 27, 106, 173));
+        return Single.just(HeaderItem.of("Amilcar Andrade", 27, 106, 173));
     }
 
     private Single<List<PhotoItem>> getPhotos() {
