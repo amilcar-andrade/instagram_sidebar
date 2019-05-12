@@ -1,8 +1,8 @@
 package andrade.amilcar.instagramsidebar.model;
 
-import android.support.annotation.NonNull;
-
 import com.google.auto.value.AutoValue;
+
+import androidx.annotation.NonNull;
 
 @AutoValue
 public abstract class HeaderItem implements GridItem {

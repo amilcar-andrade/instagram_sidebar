@@ -1,7 +1,5 @@
 package andrade.amilcar.instagramsidebar.service;
 
-import android.support.annotation.NonNull;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -13,6 +11,7 @@ import andrade.amilcar.instagramsidebar.gson.AutoValueAdapterFactory;
 import andrade.amilcar.instagramsidebar.model.GridItem;
 import andrade.amilcar.instagramsidebar.model.HeaderItem;
 import andrade.amilcar.instagramsidebar.model.PhotoItem;
+import androidx.annotation.NonNull;
 import io.reactivex.Single;
 import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Function;

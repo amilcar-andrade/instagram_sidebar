@@ -2,10 +2,7 @@ package andrade.amilcar.instagramsidebar.ui;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.support.annotation.NonNull;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
-import android.support.v7.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +18,10 @@ import andrade.amilcar.instagramsidebar.R;
 import andrade.amilcar.instagramsidebar.model.GridItem;
 import andrade.amilcar.instagramsidebar.model.HeaderItem;
 import andrade.amilcar.instagramsidebar.model.PhotoItem;
+import androidx.annotation.NonNull;
+import androidx.core.graphics.drawable.RoundedBitmapDrawable;
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class GridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 

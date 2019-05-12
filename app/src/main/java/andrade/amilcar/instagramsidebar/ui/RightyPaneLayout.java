@@ -1,9 +1,10 @@
 package andrade.amilcar.instagramsidebar.ui;
 
 import android.content.Context;
-import android.support.v4.widget.SlidingPaneLayout;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.slidingpanelayout.widget.SlidingPaneLayout;
 
 public class RightyPaneLayout extends SlidingPaneLayout {
     private final int deviceDirection;

@@ -1,14 +1,13 @@
 package andrade.amilcar.instagramsidebar.model;
 
-import android.support.annotation.DrawableRes;
-import android.support.annotation.StringRes;
-
 import com.google.auto.value.AutoValue;
 
 import java.util.Arrays;
 import java.util.List;
 
 import andrade.amilcar.instagramsidebar.R;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.StringRes;
 
 @AutoValue
 public abstract class SidebarItem {

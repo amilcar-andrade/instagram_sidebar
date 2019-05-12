@@ -1,6 +1,5 @@
 package andrade.amilcar.instagramsidebar.ui;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +9,7 @@ import java.util.List;
 
 import andrade.amilcar.instagramsidebar.R;
 import andrade.amilcar.instagramsidebar.model.SidebarItem;
+import androidx.recyclerview.widget.RecyclerView;
 
 class SidebarAdapter extends RecyclerView.Adapter<SidebarAdapter.SidebarViewHolder> {
     private final List<SidebarItem> items = SidebarItem.createSidebarItems();
