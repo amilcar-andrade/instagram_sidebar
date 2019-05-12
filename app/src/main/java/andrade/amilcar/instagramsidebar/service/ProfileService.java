@@ -24,7 +24,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public final class ProfileService {
 
     private final PhotoApi api;
-    private List<GridItem> cache = new ArrayList<>();
 
     private static final class SingletonHolder {
         static final ProfileService INSTANCE = new ProfileService();
@@ -49,11 +48,7 @@ public final class ProfileService {
     }
 
     @NonNull
-    public Single<List<GridItem>> getGridInfoAsync() {
-        if (!(cache.isEmpty())) {
-            return Single.just(cache);
-        }
-
+    Single<List<GridItem>> getHeaderAndPhotosAsync() {
         return getHeaderItem()
                 .zipWith(getPhotos(), new BiFunction<HeaderItem, List<PhotoItem>, List<GridItem>>() {
             @Override
@@ -61,7 +56,6 @@ public final class ProfileService {
                 List<GridItem> items = new ArrayList<>();
                 items.add(header);
                 items.addAll(photos.subList(10, 28));
-                cache = items;
                 return items;
             }
         }).subscribeOn(Schedulers.io());

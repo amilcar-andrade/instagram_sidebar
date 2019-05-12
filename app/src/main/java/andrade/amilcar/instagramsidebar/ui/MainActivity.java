@@ -11,9 +11,11 @@ import java.util.List;
 import andrade.amilcar.instagramsidebar.R;
 import andrade.amilcar.instagramsidebar.model.GridItem;
 import andrade.amilcar.instagramsidebar.service.ProfileService;
+import andrade.amilcar.instagramsidebar.service.ProfileViewModel;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.slidingpanelayout.widget.SlidingPaneLayout;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private Disposable disposable;
     private SlidingPaneLayout panel;
     private RecyclerView grid;
+    private ProfileViewModel profileViewModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,13 +45,16 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         final RecyclerView sidebarList = findViewById(R.id.sidebar_list);
         sidebarList.setAdapter(new SidebarAdapter());
+
+        // View model
+        ProfileViewModel.Factory factory = new ProfileViewModel.Factory(ProfileService.getInstance());
+        profileViewModel = new ViewModelProvider(this, factory).get(ProfileViewModel.class);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        disposable = ProfileService.getInstance()
-                .getGridInfoAsync()
+        disposable = profileViewModel.getProfileInfo()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<GridItem>>() {
                     @Override
@@ -68,7 +74,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        disposable.dispose();
+        if (disposable != null) {
+            disposable.dispose();
+        }
     }
 
     @Override
