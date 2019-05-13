@@ -4,12 +4,15 @@ import java.util.Collections;
 import java.util.List;
 
 import andrade.amilcar.instagramsidebar.model.GridItem;
+import andrade.amilcar.instagramsidebar.model.ProfileSate;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import io.reactivex.Single;
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 
 public class ProfileViewModel extends ViewModel {
 
@@ -23,9 +26,9 @@ public class ProfileViewModel extends ViewModel {
     }
 
     @NonNull
-    public Single<List<GridItem>> getProfileInfo() {
+    public Observable<ProfileSate> getProfileInfo() {
         if (cache != null && (!cache.isEmpty())) {
-            return Single.just(cache);
+            return Observable.just(ProfileSate.loaded(cache));
         }
 
         return profileService.getHeaderAndPhotosAsync()
@@ -34,7 +37,17 @@ public class ProfileViewModel extends ViewModel {
                     public void accept(List<GridItem> gridItems) {
                         cache = Collections.unmodifiableList(gridItems);
                     }
-                });
+                }).flatMapObservable(new Function<List<GridItem>, ObservableSource<ProfileSate>>() {
+                    @Override
+                    public ObservableSource<ProfileSate> apply(List<GridItem> gridItems) {
+                        return Observable.just(ProfileSate.loaded(gridItems));
+                    }
+                }).onErrorReturn(new Function<Throwable, ProfileSate>() {
+                    @Override
+                    public ProfileSate apply(Throwable throwable) {
+                        return ProfileSate.error(throwable);
+                    }
+                }).startWith(ProfileSate.loading());
     }
 
     @Override

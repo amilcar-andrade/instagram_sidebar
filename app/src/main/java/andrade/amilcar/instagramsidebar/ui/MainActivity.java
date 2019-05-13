@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
-import java.util.List;
+import javax.annotation.Nonnull;
 
 import andrade.amilcar.instagramsidebar.R;
-import andrade.amilcar.instagramsidebar.model.GridItem;
+import andrade.amilcar.instagramsidebar.model.ProfileSate;
 import andrade.amilcar.instagramsidebar.service.ProfileService;
 import andrade.amilcar.instagramsidebar.service.ProfileViewModel;
 import androidx.annotation.Nullable;
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private SlidingPaneLayout panel;
     private RecyclerView grid;
     private ProfileViewModel profileViewModel;
+    private View progressBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final Toolbar toolbar = findViewById(R.id.toolbar);
         panel = findViewById(R.id.panel);
+        progressBar = findViewById(android.R.id.progress);
         panel.setSliderFadeColor(Color.TRANSPARENT);
         panel.setParallaxDistance(getResources().getDimensionPixelSize(R.dimen.side_bar_width));
         grid = findViewById(R.id.grid);
@@ -56,12 +60,30 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         disposable = profileViewModel.getProfileInfo()
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<GridItem>>() {
+                .subscribe(new Consumer<ProfileSate>() {
                     @Override
-                    public void accept(List<GridItem> photoItems) throws Exception {
-                        if (grid.getAdapter() == null) {
-                            grid.setAdapter(new GridAdapter(photoItems));
-                        }
+                    public void accept(ProfileSate profileSate) throws Exception {
+                        profileSate.match(new com.spotify.dataenum.function.Consumer<ProfileSate.Loading>() {
+                            @Override
+                            public void accept(@Nonnull ProfileSate.Loading value) {
+                                progressBar.setVisibility(View.VISIBLE);
+                                panel.setVisibility(View.GONE);
+                            }
+                        }, new com.spotify.dataenum.function.Consumer<ProfileSate.Loaded>() {
+                            @Override
+                            public void accept(@Nonnull ProfileSate.Loaded value) {
+                                progressBar.setVisibility(View.GONE);
+                                panel.setVisibility(View.VISIBLE);
+                                if (grid.getAdapter() == null) {
+                                    grid.setAdapter(new GridAdapter(value.items()));
+                                }
+                            }
+                        }, new com.spotify.dataenum.function.Consumer<ProfileSate.Error>() {
+                            @Override
+                            public void accept(@Nonnull ProfileSate.Error value) {
+                                Toast.makeText(MainActivity.this, value.e().getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        });
                     }
                 }, new Consumer<Throwable>() {
                     @Override

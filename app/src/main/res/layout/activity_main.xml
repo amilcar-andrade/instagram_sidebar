@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<andrade.amilcar.instagramsidebar.ui.RightyPaneLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/panel"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
 
-    <include
-        android:layout_width="@dimen/side_bar_width"
-        android:layout_height="match_parent"
-        layout="@layout/panel_sidebar"/>
-
-    <include
+    <andrade.amilcar.instagramsidebar.ui.RightyPaneLayout
+        android:id="@+id/panel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        layout="@layout/panel_profile"/>
+        android:visibility="gone"
+        tools:visibility="visible">
 
-</andrade.amilcar.instagramsidebar.ui.RightyPaneLayout>
+        <include
+            android:layout_width="@dimen/side_bar_width"
+            android:layout_height="match_parent"
+            layout="@layout/panel_sidebar"/>
+
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/panel_profile"/>
+
+    </andrade.amilcar.instagramsidebar.ui.RightyPaneLayout>
+
+    <ProgressBar
+        android:id="@android:id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+</FrameLayout>
